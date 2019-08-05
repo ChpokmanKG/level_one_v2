@@ -1,24 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route } from 'react-router-dom';
+import Header from './components/header';
+import MyProfile from './containers/profile';
+import PersonalPost from './containers/personal-post';
+import People from './containers/people/'
+import PostsWrap from './containers/posts/';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <div className="container all-center container-around">
+        <MyProfile />
+        <Switch>
+          <Route exact path="/" component={PostsWrap}/>
+          <Route path="/posts/:userId/" component={PersonalPost}/>
+        </Switch>
+        <People />
+      </div>
     </div>
   );
 }
